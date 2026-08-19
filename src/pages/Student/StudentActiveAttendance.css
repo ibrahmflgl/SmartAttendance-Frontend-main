@@ -1,0 +1,297 @@
+/* Genel Grid Yapısı */
+.sessions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Güvenlik Durum Barı */
+.security-status {
+    margin: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.security-status.not-ready {
+    background-color: #fff3e0;
+    color: #e65100;
+    border: 1px solid #ffb74d;
+}
+
+.security-status.ready {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+/* Session Kart Tasarımı */
+.session-card-student {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    transition: transform 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.session-card-student:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.method-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+}
+
+.method-badge.qrcode { background: #2196f3; }
+.method-badge.facescan { background: #9c27b0; }
+.method-badge.location { background: #ff9800; }
+
+.session-card-student h3 {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.session-card-student h4 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.instructor-name {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.btn-join {
+    width: 100%;
+    padding: 12px;
+    background: #0d47a1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-join:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-join:hover:not(:disabled) {
+    background: #1565c0;
+}
+.modal-content {
+
+  width: 100%;;
+}
+
+/* --- MODAL (HİZALAMA VE TAŞMA SORUNLARI ÇÖZÜLDÜ) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.attendance-modal-box {
+    
+    background: white;
+    width: 100%;
+    max-width: 420px; /* Ekranı çok kaplamaması için küçültüldü */
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.close-icon {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.close-icon:hover {
+    color: #d32f2f;
+}
+
+.modal-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Kamera Alanı */
+.camera-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instruction {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #333;
+    font-size: 15px;
+}
+
+.camera-wrapper {
+    width: 100%;
+    height: 300px;
+    background: #000;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+     margin-left: 10px;
+    /* Gölgelerin köşelerden taşmasını kesin olarak engeller (Safari bug fix) */
+    isolation: isolate; 
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.webcam-view {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Yüz Tanıma İçin Yuvarlak Maske */
+.circle-mask .webcam-view {
+    border-radius: 50%; 
+    width: 80%; 
+    height: 80%;
+    top: 10%;
+    left: 10%;
+}
+
+/* QR Çerçevesi (Tam Merkeze Sabitlendi) */
+.qr-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Matematiksel mükemmel merkezleme */
+    width: 200px;
+    height: 200px;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6); /* Etrafı karartma */
+    pointer-events: none;
+    z-index: 2;
+}
+
+.camera-loader {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    color: white;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.6);
+}
+
+/* Konum Alanı */
+.location-confirm-container {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.big-icon-location {
+    font-size: 60px;
+    color: #ff9800;
+    margin-bottom: 15px;
+}
+
+.lat-long-box {
+    background: #f1f1f1;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-family: monospace;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Aksiyon Butonu */
+.btn-action {
+    background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.btn-action:hover:not(:disabled) {
+    background: #1b5e20;
+}
+
+.btn-action:disabled {
+    background: #9e9e9e;
+    cursor: not-allowed;
+}

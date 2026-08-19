@@ -1,0 +1,221 @@
+/* src/pages/Student/StudentCourseDetailsPage.css */
+
+.details-container {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ========================================================== */
+/* ÜST ÖZET KARTI                                             */
+/* ========================================================== */
+.summary-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+  margin-bottom: 30px;
+  
+  /* Dikey (Column) dizilim - başlık üstte, kutular altta */
+  display: flex;
+  flex-direction: column; 
+  align-items: stretch;
+  gap: 20px;
+}
+
+.course-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.course-header h2 {
+  margin: 0 0 5px 0;
+  color: #333;
+  font-size: 22px;
+}
+
+.course-header p {
+  margin: 0;
+  color: #666;
+}
+
+/* ========================================================== */
+/* İSTATİSTİK KUTULARI                                        */
+/* ========================================================== */
+.stats-row {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 15px;
+  width: 100%;
+}
+
+.stat-box {
+  background-color: #fdfdfd;
+  padding: 20px 15px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  
+  /* Kutuların eşit dağılmasını sağlar */
+  flex: 1; 
+  min-width: 120px; 
+}
+
+/* Mavi Katılım Kutusu İçin Özel Sınıf */
+.stat-box.highlight {
+  background-color: #e7f1ff;
+  border-color: #b8daff;
+}
+
+/* ÇAKIŞMAYI ÇÖZEN YENİ CLASS İSMİ: course-stat-val */
+.course-stat-val {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #666;
+  text-transform: uppercase;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Renkler */
+.text-green { color: #28a745; }
+.text-red { color: #dc3545; }
+.text-orange { color: #fd7e14; }
+.text-blue { color: #007bff; }
+
+/* ========================================================== */
+/* LİSTE (GEÇMİŞ YOKLAMALAR)                                  */
+/* ========================================================== */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.history-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #eee;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.history-item:hover {
+  transform: translateX(5px);
+  border-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0,123,255,0.1);
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.date-box {
+  background-color: #e7f1ff;
+  color: #007bff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  min-width: 60px;
+}
+
+.date-day { font-size: 18px; display: block; }
+.date-month { font-size: 12px; text-transform: uppercase; }
+
+.session-info h4 { margin: 0 0 5px 0; font-size: 16px; color: #444; }
+.session-info p { margin: 0; font-size: 13px; color: #888; }
+
+/* ========================================================== */
+/* DURUM BADGE'LERİ                                           */
+/* ========================================================== */
+.status-badge {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  min-width: 70px;
+  text-align: center;
+}
+
+.status-present { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.status-absent { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.status-excused { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+}
+
+/* ========================================================== */
+/* MOBİL UYUM (TELEFONLAR İÇİN)                               */
+/* ========================================================== */
+@media (max-width: 768px) {
+  .details-container {
+    padding: 10px;
+  }
+
+  .summary-card {
+    padding: 20px 15px;
+  }
+
+  .course-header {
+    text-align: center; 
+  }
+
+  .course-header h2 {
+    font-size: 20px;
+  }
+
+  /* 4 Kutuyu yan yana sıkıştırmak yerine 2x2 Izgara (Grid) Yap */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .stat-box {
+    min-width: auto; 
+    padding: 15px;
+  }
+
+  .course-stat-val {
+    font-size: 20px;
+  }
+
+  /* Geçmiş Liste Kartlarının Mobilde Sığması İçin */
+  .history-item {
+    padding: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .item-left {
+    gap: 15px;
+  }
+
+  .item-right {
+    align-self: flex-end;
+    width: 100%;
+    text-align: right;
+  }
+}
