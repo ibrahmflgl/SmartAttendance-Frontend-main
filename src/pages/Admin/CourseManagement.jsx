@@ -35,7 +35,7 @@ const CourseManagement = () => {
     const [showStudentModal, setShowStudentModal] = useState(false);
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [courseStudents, setCourseStudents] = useState([]);
-    const [savingStudents, setSavingStudents] = useState(false);
+    const [savingStudents, setSavingStudents] = useState(false); 
 
     const [showScheduleModal, setShowScheduleModal] = useState(false);
     const [locations, setLocations] = useState([]);
